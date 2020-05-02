@@ -18,23 +18,35 @@
 
 <body>
     <div id="fullpage">
-        <div class="section ">
-            <div class=top_background>
+        <div class="section  ">
+            <div class="top_background " >
                 <h1> COVID-19</h1>
                 <h1>Sam Lee - Hung Quach - Rigo Garcia Soto</h1>
             </div>
         </div>
-        <div class="section">
-            <div class = content>
+        <div class="section image-background ">
+
+        </div>
+        <div class="section ">
+            <div class = "content">
                 <h1> 1 - Brief Introduction</h1>
                 <p>
                     <ul>
                         <li>
-                            COVID-19 has been increasing dramatically in the U.S. &nbsp From only few cases in December,&nbsp the virus has spread to every state and caused 
+                            COVID-19 has been increasing dramatically in the U.S. From only few cases in December,&nbsp the virus has spread to every state and caused 
                             numerous dead cases every day.
                         </li>
                         <li>
                             We want to know how severe COVID-19 is affecting every state.
+                        </li>
+                        <li>
+                            What is the positive case of each state?
+                        </li>
+                        <li>
+                            What is the death rate of each state?
+                        </li>
+                        <li>
+                            What is the solution?
                         </li>
                     </ul>
                 </p>
@@ -57,6 +69,11 @@
             </div>
             
         </div>
+        
+
+
+
+        
         <div class="section ">
             <div class ="content">
                 <div class="question">
@@ -93,12 +110,121 @@
                     </script>
             </div>
             
+            
         </div>
+
+        
+
+
+        <div class="section "">
+            <div class="content">
+                <div class="question">
+                    <p>
+                        <strong> Question 3: How is the death increase rate of each state?</strong> 
+                    </p>
+                </div>
+                <div id="vis"></div>
+    
+                    <script type="text/javascript">
+                    var yourVlSpec = {
+                                "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+                                "data": {
+                                    "url": "https://gist.githubusercontent.com/KevinK88/2a8f61ee702514363994da0a55930e91/raw/34b65b417875e5bce0fb534799f75593740ac515/deathincrease.csv"
+                                },
+                                "width": 400,
+                                "height": 300,
+                                "layer": [
+                                    {
+                                    "encoding": {
+                                        "x": {"field": "date", "type": "temporal"},
+                                        "y": {"field": "deathIncrease", "type": "quantitative"},
+                                        "color": {"field": "state", "type": "nominal"}
+                                    },
+                                    "layer": [
+                                        {"mark": "line"},
+                                        {
+                                        "selection": {
+                                            "label": {
+                                            "type": "single",
+                                            "nearest": true,
+                                            "on": "mouseover",
+                                            "encodings": ["x"],
+                                            "empty": "none"
+                                            }
+                                        },
+                                        "mark": "point",
+                                        "encoding": {
+                                            "opacity": {
+                                            "condition": {"selection": "label", "value": 1},
+                                            "value": 0
+                                            }
+                                        }
+                                        }
+                                    ]
+                                    },
+                                    {
+                                    "transform": [{"filter": {"selection": "label"}}],
+                                    "layer": [
+                                        {
+                                        "mark": {"type": "rule", "color": "gray"},
+                                        "encoding": {
+                                            "x": {"type": "temporal", "field": "date", "aggregate": "min"}
+                                        }
+                                        },
+                                        {
+                                        "encoding": {
+                                            "text": {"type": "quantitative", "field": "deathIncrease"},
+                                            "x": {"type": "temporal", "field": "date"},
+                                            "y": {"type": "quantitative", "field": "deathIncrease"}
+                                        },
+                                        "layer": [
+                                            {
+                                            "mark": {
+                                                "type": "text",
+                                                "stroke": "white",
+                                                "strokeWidth": 2,
+                                                "align": "left",
+                                                "dx": 5,
+                                                "dy": -5
+                                            }
+                                            },
+                                            {
+                                            "mark": {"type": "text", "align": "left", "dx": 5, "dy": -5},
+                                            "encoding": {
+                                                "color": {"type": "nominal", "field": "symbol"}
+                                            }
+                                            }
+                                        ]
+                                        }
+                                    ]
+                                    }
+                                ]
+                    }
+                    vegaEmbed('#vis', yourVlSpec);
+                    </script>
+            
+
+
+
+            </div>
+            
+        
+        
+        
+        
+        
+        
+        
+        </div>
+
+
+
+
         <div class="section ">
             <div class="content">
                 <div class="question">
                     <p>
-                        <strong> Question 3: How is COVID-19 affectting every state in the U.S from January to April?</strong> 
+                        <strong> Question 4: How is COVID-19 affectting every state in the U.S from January to April?</strong> 
                     </p>
                 </div>
                     <!-- This is the code embed from Observable for question 3-->
@@ -113,8 +239,20 @@
             </div>
            
         </div>
+        
+        <div class="section top_background">
+            <h1 style="font-size: 100px;">Solutions?</h1>
+        </div>
+        
         <div class="section ">
-            <h1 style="text-align: center;">Thank you</h1>
+                <!-- <img src="image/social.jpg"  class="center" > -->
+               
+                <div class="slide"> <img src="image/wash-hand.jpg"  class="center" > </div>
+                <div class="slide"> <img src="image/stay-home.jpg"  class="center" ></div>
+                <div class="slide"> <img src="image/social.jpg"  class="center" > </div>
+        </div>
+        <div class="section top_background">
+            <h1 style="font-size: 80px;">Thank you</h1>
         </div>
     </div>
      
